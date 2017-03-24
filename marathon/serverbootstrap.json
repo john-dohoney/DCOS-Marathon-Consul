@@ -1,5 +1,5 @@
 {
-  "id": "/consul-public-agents-rccl",
+  "id": "/consul-public-agents",
   "instances": 2,
   "cpus": 0.5,
   "mem": 256,
