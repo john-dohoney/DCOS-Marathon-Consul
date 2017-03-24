@@ -1,5 +1,5 @@
 {
-  "id": "/rccl-registrator",
+  "id": "/registrator",
   "cmd": null,
   "args": [
     "consul://localhost:8500"
