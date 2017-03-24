@@ -1,0 +1,59 @@
+{
+  "id": "/consul-public-agents-rccl",
+  "instances": 2,
+  "cpus": 0.5,
+  "mem": 256,
+  "args": ["server", "10.0.6.29", "10.0.4.175"],
+  "container": {
+    "docker": {
+      "image": "johndohoney/consul:7.4",
+      "forcePullImage": true,
+      "privileged": false,
+      "portMappings": [
+        {
+          "containerPort": 8300,
+          "protocol": "tcp",
+          "hostPort": 8300
+        },
+        {
+          "containerPort": 8301,
+          "protocol": "udp,tcp",
+          "hostPort": 8301
+        },
+        {
+          "containerPort": 8302,
+          "protocol": "udp,tcp",
+          "hostPort": 8302
+        },
+        {
+          "containerPort": 8400,
+          "protocol": "tcp",
+          "hostPort": 8400
+        },
+        {
+          "containerPort": 8500,
+          "protocol": "tcp",
+          "hostPort": 8500
+        }
+      ],
+      "network": "HOST"
+    }
+  },
+  "healthChecks": [{
+      "protocol": "HTTP",
+      "port": 8500,
+      "path": "/v1/health/service/consul",
+      "portIndex": 0,
+      "timeoutSeconds": 10,
+      "gracePeriodSeconds": 10,
+      "intervalSeconds": 2,
+      "maxConsecutiveFailures": 10
+  }],
+  "acceptedResourceRoles": [
+    "slave_public"
+  ],
+  "requirePorts": false,
+  "env": {
+    "DATACENTER": "us-west-1a"
+  }
+}
